@@ -1,0 +1,56 @@
+version : '3'
+services:
+  ############################
+  # serviceone app + Dapr sidecar
+  ############################
+  publisherapp:
+    image: publisherapp
+    build: 
+      context: .
+      dockerfile: Rapid.Dapr.Publisher/Dockerfile
+    ports:
+      - "3500:3500" # HOST_PORT:CONTAINER_PORT
+      
+  publisherapp-dapr:
+    image: "daprio/daprd:edge"
+    command: ["./daprd",
+    "-app-id", "publisherapp",
+    "-app-port", "80", # Same as Expose port of Dockerfile of the respective service
+    "-components-path", "/components",
+    "-log-level", "debug"]
+    volumes:
+      - "./components/:/components"
+    
+    depends_on:
+      - publisherapp
+    network_mode: "service:publisherapp"
+
+  ############################
+  # ServiceTwo app + Dapr sidecar
+  ############################
+  #subscriberapp:
+  #  image: subscriberapp
+  #  build:
+  #    context: .
+  #    dockerfile: Rapid.Dapr.Subscriber/Dockerfile
+  #  ports:
+  #    - "3501:3501"
+      
+  #subscriberapp-dapr:
+  #  image: "daprio/daprd:edge"
+  #  command: ["./daprd",
+  #  "-app-id", "subscriberapp",
+  #  "-app-port", "80",
+  #  "-components-path", "/components",
+  #  "-log-level", "debug"]
+  #  volumes:
+  #    - "./components/:/components"
+  #  depends_on:
+  #    - subscriberapp
+  #  network_mode: "service:subscriberapp"
+    
+  redis:
+    image: "redis:alpine"
+    hostname: redisstate
+    ports:
+      - "6379:6379"
