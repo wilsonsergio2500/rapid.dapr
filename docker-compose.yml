@@ -18,3 +18,26 @@ services:
     depends_on:
       - rapid.dapr.publisher
     network_mode: "service:rapid.dapr.publisher" 
+
+  rapid.dapr.subscriber:
+    image: ${DOCKER_REGISTRY-}subscriberapp
+    build:
+      context: .
+      dockerfile: Rapid.Dapr.Subscriber/Dockerfile
+    ports:
+      - "3501:3501"
+      
+  subscriberapp-dapr:
+    image: "daprio/daprd:edge"
+    command: ["./daprd", "-app-id", "subscriberapp", "-app-port", "80", "-components-path", "/components", "-log-level", "debug"]
+    volumes:
+      - "./components/:/components"
+    depends_on:
+      - rapid.dapr.subscriber
+    network_mode: "service:rapid.dapr.subscriber"
+    
+  redis:
+    image: "redis:alpine"
+    hostname: redisstate
+    ports:
+      - "6379:6379"

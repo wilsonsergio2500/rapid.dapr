@@ -4,7 +4,11 @@
       "commandName": "DockerCompose",
       "commandVersion": "1.0",
       "serviceActions": {
-        "rapid.dapr.publisher": "StartDebugging"
+        "rapid.dapr.publisher": "StartDebugging",
+        "publisherapp-dapr": "StartWithoutDebugging",
+        "rapid.dapr.subscriber": "StartDebugging",
+        "redis": "StartWithoutDebugging",
+        "subscriberapp-dapr": "StartWithoutDebugging"
       }
     }
   }
