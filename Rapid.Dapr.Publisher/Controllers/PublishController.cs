@@ -16,6 +16,7 @@ namespace Rapid.Dapr.Publisher.Controllers
         [HttpPost("message")]
         public async Task<IActionResult> Post([FromBody] ActivityMessageDTO message)
         {
+            Console.WriteLine($"Calling Publish Action:- {message.Key}, DateTime: - {DateTime.Now}");
             await activityHelper.PublishActivity(message);
             return Ok();
         }

@@ -14,12 +14,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rapid.Dapr.Task", "Rapid.Da
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{B0ED3E85-5385-4F50-85E1-6D34F29BF212}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rapid.Dapr.Subscriber", "Rapid.Dapr.Subscriber\Rapid.Dapr.Subscriber.csproj", "{C93B80D9-D0D1-408A-9C76-39F52E52EB17}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rapid.Dapr.Subscriber", "Rapid.Dapr.Subscriber\Rapid.Dapr.Subscriber.csproj", "{C93B80D9-D0D1-408A-9C76-39F52E52EB17}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{D465D955-B1F2-4D90-A515-FFE3BD84387D}"
 	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
 		docker-compose.yaml = docker-compose.yaml
 	EndProjectSection
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{A6AA8EE6-1835-4198-8727-0EB9E19A9955}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +42,10 @@ Global
 		{C93B80D9-D0D1-408A-9C76-39F52E52EB17}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C93B80D9-D0D1-408A-9C76-39F52E52EB17}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C93B80D9-D0D1-408A-9C76-39F52E52EB17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6AA8EE6-1835-4198-8727-0EB9E19A9955}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6AA8EE6-1835-4198-8727-0EB9E19A9955}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6AA8EE6-1835-4198-8727-0EB9E19A9955}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6AA8EE6-1835-4198-8727-0EB9E19A9955}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

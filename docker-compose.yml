@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  rapid.dapr.publisher:
+    image: ${DOCKER_REGISTRY-}rapiddaprpublisher
+    build:
+      context: .
+      dockerfile: Rapid.Dapr.Publisher/Dockerfile

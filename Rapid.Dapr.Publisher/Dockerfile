@@ -13,7 +13,7 @@ WORKDIR /src
 COPY ["Rapid.Dapr.Task/Rapid.Dapr.Task.csproj", "Rapid.Dapr.Task/"]
 COPY ["Rapid.Dapr.Publisher/Rapid.Dapr.Publisher.csproj", "Rapid.Dapr.Publisher/"]
 RUN dotnet restore "Rapid.Dapr.Publisher/Rapid.Dapr.Publisher.csproj"
-#COPY . .
+COPY . .
 WORKDIR "/src/Rapid.Dapr.Publisher"
 RUN dotnet build "Rapid.Dapr.Publisher.csproj" -c Release -o /app/build
 

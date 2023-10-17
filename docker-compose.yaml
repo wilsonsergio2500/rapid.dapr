@@ -1,4 +1,5 @@
 version : '3'
+
 services:
   ############################
   # serviceone app + Dapr sidecar
@@ -28,26 +29,26 @@ services:
   ############################
   # ServiceTwo app + Dapr sidecar
   ############################
-  #subscriberapp:
-  #  image: subscriberapp
-  #  build:
-  #    context: .
-  #    dockerfile: Rapid.Dapr.Subscriber/Dockerfile
-  #  ports:
-  #    - "3501:3501"
+  subscriberapp:
+    image: subscriberapp
+    build:
+      context: .
+      dockerfile: Rapid.Dapr.Subscriber/Dockerfile
+    ports:
+      - "3501:3501"
       
-  #subscriberapp-dapr:
-  #  image: "daprio/daprd:edge"
-  #  command: ["./daprd",
-  #  "-app-id", "subscriberapp",
-  #  "-app-port", "80",
-  #  "-components-path", "/components",
-  #  "-log-level", "debug"]
-  #  volumes:
-  #    - "./components/:/components"
-  #  depends_on:
-  #    - subscriberapp
-  #  network_mode: "service:subscriberapp"
+  subscriberapp-dapr:
+    image: "daprio/daprd:edge"
+    command: ["./daprd",
+    "-app-id", "subscriberapp",
+    "-app-port", "80",
+    "-components-path", "/components",
+    "-log-level", "debug"]
+    volumes:
+      - "./components/:/components"
+    depends_on:
+      - subscriberapp
+    network_mode: "service:subscriberapp"
     
   redis:
     image: "redis:alpine"
