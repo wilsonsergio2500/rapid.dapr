@@ -2,7 +2,19 @@ version: '3.4'
 
 services:
   rapid.dapr.publisher:
-    image: ${DOCKER_REGISTRY-}rapiddaprpublisher
+    image: ${DOCKER_REGISTRY-}publisherapp
     build:
       context: .
       dockerfile: Rapid.Dapr.Publisher/Dockerfile
+    ports:
+      - "3500:3500" # HOST_PORT:CONTAINER_PORT
+
+  publisherapp-dapr:
+    image: "daprio/daprd:edge"
+    command: ["./daprd", "-app-id", "publisherapp", "-app-port", "80", "-components-path", "/components", "-log-level", "debug"]
+    volumes:
+      - "./components/:/components"
+    
+    depends_on:
+      - rapid.dapr.publisher
+    network_mode: "service:rapid.dapr.publisher" 
